@@ -40,9 +40,9 @@ class DestinationView: NSView {
     frameView.unregisterDraggedTypes()
     frameView.alphaValue = 0
     frameView.borderType = .lineBorder
-    frameView.borderColor = NSColor.red
+    frameView.borderColor = NSColor.blue.withAlphaComponent(0.3)
     frameView.borderWidth = 4
-    frameView.pinEdges(topPadding: -20)
+    frameView.pinEdges()
   }
 
   // MARK: - NSDraggingDestination
@@ -67,7 +67,8 @@ class DestinationView: NSView {
   override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
     let pasteBoard = sender.draggingPasteboard()
 
-    guard let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL],
+    guard let urls = pasteBoard.readObjects(forClasses: [NSURL.self],
+                                            options: options) as? [URL],
       let url = urls.first,
       let image = NSImage(contentsOf: url) else {
       return false
@@ -83,11 +84,11 @@ class DestinationView: NSView {
 }
 
 extension NSView {
-  func pinEdges(topPadding: CGFloat = 0) {
+  func pinEdges() {
     let superview = self.superview!
 
     translatesAutoresizingMaskIntoConstraints = false
-    topAnchor.constraint(equalTo: superview.topAnchor, constant: topPadding).isActive = true
+    topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
     leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
     bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
     rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
