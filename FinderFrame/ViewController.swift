@@ -1,27 +1,19 @@
-//
-//  ViewController.swift
-//  FinderFrame
-//
-//  Created by Khoa Pham on 29.06.2017.
-//  Copyright © 2017 Fantageek. All rights reserved.
-//
-
 import Cocoa
 
 class ViewController: NSViewController {
 
+  let destinationView = DestinationView()
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Do any additional setup after loading the view.
+    view.addSubview(destinationView)
   }
 
-  override var representedObject: Any? {
-    didSet {
-    // Update the view, if already loaded.
-    }
+  override func viewDidLayout() {
+    super.viewDidLayout()
+
+    destinationView.frame = view.bounds
   }
-
-
 }
 
