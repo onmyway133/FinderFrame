@@ -1,17 +1,17 @@
 import Cocoa
 
-protocol DestinationViewDelegate {
-  func processImageURLs(_ urls: [URL], center: NSPoint)
-  func processImage(_ image: NSImage, center: NSPoint)
-  func processAction(_ action: String, center: NSPoint)
+protocol DestinationViewDelegate: class {
+  func destinationView(_ view: DestinationView, didGetImage image: NSImage)
 }
 
 class DestinationView: NSView {
 
-  let imageView = NSImageView()
-  var isDragging = false
+  weak var delegate: DestinationViewDelegate?
 
-  let options: [String: Any] = [
+  private let imageView = NSImageView()
+  private var isDragging = false
+
+  private let options: [String: Any] = [
     NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
   ]
 
@@ -51,12 +51,14 @@ class DestinationView: NSView {
     let pasteBoard = sender.draggingPasteboard()
 
     guard let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL],
-      let url = urls.first else {
+      let url = urls.first,
+      let image = NSImage(contentsOf: url) else {
       return false
     }
 
-    let image = NSImage(contentsOf: url)!
     imageView.image = image
+
+    delegate?.destinationView(self, didGetImage: image)
 
     return true
   }
