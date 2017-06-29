@@ -36,11 +36,13 @@ class DestinationView: NSView {
     // FrameView
     addSubview(frameView)
     frameView.title = ""
+    frameView.boxType = .custom
     frameView.unregisterDraggedTypes()
-    frameView.alphaValue = 1
+    frameView.alphaValue = 0
+    frameView.borderType = .lineBorder
     frameView.borderColor = NSColor.red
     frameView.borderWidth = 4
-    frameView.pinEdges()
+    frameView.pinEdges(topPadding: -20)
   }
 
   // MARK: - NSDraggingDestination
@@ -55,6 +57,10 @@ class DestinationView: NSView {
   }
 
   override func draggingExited(_ sender: NSDraggingInfo?) {
+    isDragging = false
+  }
+
+  override func draggingEnded(_ sender: NSDraggingInfo?) {
     isDragging = false
   }
 
@@ -77,11 +83,11 @@ class DestinationView: NSView {
 }
 
 extension NSView {
-  func pinEdges() {
+  func pinEdges(topPadding: CGFloat = 0) {
     let superview = self.superview!
 
     translatesAutoresizingMaskIntoConstraints = false
-    topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+    topAnchor.constraint(equalTo: superview.topAnchor, constant: topPadding).isActive = true
     leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
     bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
     rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
