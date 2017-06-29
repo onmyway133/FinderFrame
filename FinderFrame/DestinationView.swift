@@ -21,6 +21,7 @@ class DestinationView: NSView {
     let types = [NSURLPboardType]
     register(forDraggedTypes: types)
 
+    imageView.imageScaling = .scaleProportionallyUpOrDown
     imageView.unregisterDraggedTypes()
     addSubview(imageView)
   }
@@ -55,30 +56,9 @@ class DestinationView: NSView {
     }
 
     let image = NSImage(contentsOf: url)!
-    imageView.image = resize(image: image, size: imageView.frame.size)
+    imageView.image = image
 
     return true
-  }
-
-  // MARK: - Image
-
-  func resize(image: NSImage, size: CGSize) -> NSImage {
-    let newImage = NSImage(size: size)
-    newImage.lockFocus()
-
-    let destinationRect = NSRect(origin: .zero, size: size)
-    let imageRect = NSRect(origin: .zero, size: image.size)
-
-    image.draw(in: destinationRect,
-               from: imageRect,
-               operation: .sourceOver,
-               fraction: 1,
-               respectFlipped: true,
-               hints: nil)
-    newImage.unlockFocus()
-    newImage.size = size
-
-    return NSImage(data: newImage.tiffRepresentation!)!
   }
 }
 
