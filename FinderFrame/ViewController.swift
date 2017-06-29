@@ -76,9 +76,8 @@ class ViewController: NSViewController, DestinationViewDelegate {
       return
     }
 
-    let uuid = UUID().uuidString
     let url = URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
-      .appendingPathComponent("FinderFrame-\(fileName)-\(uuid)")
+      .appendingPathComponent("FinderFrame-\(fileName)-\(formattedDate())")
       .appendingPathExtension("png")
 
     do {
@@ -97,6 +96,13 @@ class ViewController: NSViewController, DestinationViewDelegate {
     notification.actionButtonTitle = "Open"
 
     NSUserNotificationCenter.default.deliver(notification)
+  }
+
+  func formattedDate() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd.MM.yyyy-HH:mm:ss"
+
+    return formatter.string(from: Date())
   }
 }
 
