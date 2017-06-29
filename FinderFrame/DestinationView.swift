@@ -54,9 +54,31 @@ class DestinationView: NSView {
       return false
     }
 
-    imageView.image = NSImage(contentsOf: url)
+    let image = NSImage(contentsOf: url)!
+    imageView.image = resize(image: image, size: imageView.frame.size)
 
     return true
+  }
+
+  // MARK: - Image
+
+  func resize(image: NSImage, size: CGSize) -> NSImage {
+    let newImage = NSImage(size: size)
+    newImage.lockFocus()
+
+    let destinationRect = NSRect(origin: .zero, size: size)
+    let imageRect = NSRect(origin: .zero, size: image.size)
+
+    image.draw(in: destinationRect,
+               from: imageRect,
+               operation: .sourceOver,
+               fraction: 1,
+               respectFlipped: true,
+               hints: nil)
+    newImage.unlockFocus()
+    newImage.size = size
+
+    return NSImage(data: newImage.tiffRepresentation!)!
   }
 }
 
