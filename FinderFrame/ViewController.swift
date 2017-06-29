@@ -50,7 +50,20 @@ class ViewController: NSViewController, DestinationViewDelegate {
   }
 
   func save() {
-    
+    guard let window = view.window else {
+      return
+    }
+
+    guard let cgImage = CGWindowListCreateImage(
+      CGRect.null,
+      CGWindowListOption.optionIncludingWindow,
+      CGWindowID(window.windowNumber),
+      CGWindowImageOption.bestResolution) else {
+      return
+    }
+
+    let image = NSImage(cgImage: cgImage, size: window.frame.size)
+    print(image)
   }
 }
 
