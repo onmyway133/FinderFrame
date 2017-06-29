@@ -9,7 +9,13 @@ class DestinationView: NSView {
   weak var delegate: DestinationViewDelegate?
 
   private let imageView = NSImageView()
-  private var isDragging = false
+  private var isDragging = false {
+    didSet {
+      frameView.alphaValue = isDragging ? 1 : 0
+    }
+  }
+
+  private var frameView = NSBox()
 
   private let options: [String: Any] = [
     NSPasteboardURLReadingContentsConformToTypesKey: NSImage.imageTypes()
@@ -21,15 +27,20 @@ class DestinationView: NSView {
     let types = [NSURLPboardType]
     register(forDraggedTypes: types)
 
+    // ImageView
+    addSubview(imageView)
     imageView.imageScaling = .scaleProportionallyUpOrDown
     imageView.unregisterDraggedTypes()
-    addSubview(imageView)
+    imageView.pinEdges()
 
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-    imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-    imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    imageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+    // FrameView
+    addSubview(frameView)
+    frameView.title = ""
+    frameView.unregisterDraggedTypes()
+    frameView.alphaValue = 1
+    frameView.borderColor = NSColor.red
+    frameView.borderWidth = 4
+    frameView.pinEdges()
   }
 
   // MARK: - NSDraggingDestination
@@ -62,6 +73,18 @@ class DestinationView: NSView {
     delegate?.destinationView(self, didGetImage: image, name: name)
 
     return true
+  }
+}
+
+extension NSView {
+  func pinEdges() {
+    let superview = self.superview!
+
+    translatesAutoresizingMaskIntoConstraints = false
+    topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+    leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
+    bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
+    rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
   }
 }
 
