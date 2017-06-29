@@ -3,12 +3,18 @@ import Cocoa
 class ViewController: NSViewController, DestinationViewDelegate {
 
   let destinationView = DestinationView()
+  var saveMenuItem: NSMenuItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     destinationView.delegate = self
     view.addSubview(destinationView)
+
+    saveMenuItem = (NSApplication.shared().delegate as! AppDelegate).saveMenuItem
+    saveMenuItem?.target = self
+    saveMenuItem.action = #selector(save)
+    saveMenuItem.isEnabled = false
   }
 
   override func viewDidLayout() {
@@ -24,6 +30,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
       return
     }
 
+    saveMenuItem.isEnabled = true
     resize(window: window, image: image)
   }
 
@@ -40,6 +47,10 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
     let frame = NSRect(origin: window.frame.origin, size: finalSize)
     window.setFrame(frame, display: true)
+  }
+
+  func save() {
+    
   }
 }
 

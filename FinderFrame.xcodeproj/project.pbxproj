@@ -295,6 +295,7 @@
 				D2873FCE1F05032A004F4396 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
