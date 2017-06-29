@@ -24,12 +24,12 @@ class DestinationView: NSView {
     imageView.imageScaling = .scaleProportionallyUpOrDown
     imageView.unregisterDraggedTypes()
     addSubview(imageView)
-  }
 
-  override func resizeSubviews(withOldSize oldSize: NSSize) {
-    super.resizeSubviews(withOldSize: oldSize)
-
-    imageView.frame = bounds
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+    imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+    imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    imageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
   }
 
   // MARK: - NSDraggingDestination
