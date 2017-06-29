@@ -4,6 +4,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
   let destinationView = DestinationView()
   var saveMenuItem: NSMenuItem!
+  var fileName = "FinderFrame"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,11 +26,12 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
   // MARK: - DestinationViewDelegate
 
-  func destinationView(_ view: DestinationView, didGetImage image: NSImage) {
+  func destinationView(_ view: DestinationView, didGetImage image: NSImage, name: String) {
     guard let window = view.window else {
       return
     }
 
+    fileName = name
     saveMenuItem.isEnabled = true
     resize(window: window, image: image)
   }
@@ -62,11 +64,12 @@ class ViewController: NSViewController, DestinationViewDelegate {
       return
     }
 
+
     let image = NSImage(cgImage: cgImage, size: window.frame.size)
-    save(image: image, name: "Hello")
+    save(image: image)
   }
 
-  func save(image: NSImage, name: String) {
+  func save(image: NSImage) {
     guard let tiffData = image.tiffRepresentation,
       let bitmap = NSBitmapImageRep(data: tiffData),
       let imageData = bitmap.representation(using: .PNG, properties: [:]) else {
@@ -74,7 +77,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
     }
 
     let url = URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
-      .appendingPathComponent("Helo")
+      .appendingPathComponent(fileName)
       .appendingPathExtension("png")
 
     do {
@@ -87,7 +90,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
   func showNotification(url: URL) {
     let notification = NSUserNotification()
-    notification.title = "Hello"
+    notification.title = fileName
     notification.informativeText = url.absoluteString
     notification.hasActionButton = true
     notification.actionButtonTitle = "Open"

@@ -1,7 +1,7 @@
 import Cocoa
 
 protocol DestinationViewDelegate: class {
-  func destinationView(_ view: DestinationView, didGetImage image: NSImage)
+  func destinationView(_ view: DestinationView, didGetImage image: NSImage, name: String)
 }
 
 class DestinationView: NSView {
@@ -57,8 +57,8 @@ class DestinationView: NSView {
     }
 
     imageView.image = image
-
-    delegate?.destinationView(self, didGetImage: image)
+    let name = url.deletingPathExtension().lastPathComponent
+    delegate?.destinationView(self, didGetImage: image, name: name)
 
     return true
   }
