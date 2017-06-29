@@ -58,6 +58,7 @@ class DestinationView: NSView {
 
     imageView.image = image
     let name = url.deletingPathExtension().lastPathComponent
+    window?.title = name
     delegate?.destinationView(self, didGetImage: image, name: name)
 
     return true

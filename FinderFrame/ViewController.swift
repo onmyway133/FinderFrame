@@ -76,8 +76,9 @@ class ViewController: NSViewController, DestinationViewDelegate {
       return
     }
 
+    let uuid = UUID().uuidString
     let url = URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
-      .appendingPathComponent(fileName)
+      .appendingPathComponent("FinderFrame-\(fileName)-\(uuid)")
       .appendingPathExtension("png")
 
     do {
