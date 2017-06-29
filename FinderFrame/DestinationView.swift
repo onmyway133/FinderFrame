@@ -21,7 +21,8 @@ class DestinationView: NSView {
     let types = [NSURLPboardType]
     register(forDraggedTypes: types)
 
-//    addSubview(imageView)
+    imageView.unregisterDraggedTypes()
+    addSubview(imageView)
   }
 
   override func resizeSubviews(withOldSize oldSize: NSSize) {
