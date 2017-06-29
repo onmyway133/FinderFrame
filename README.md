@@ -1,5 +1,9 @@
 # FinderFrame
 
+## Description
+
+- Icon from https://www.emojione.com/
+
 ## Author
 
 Khoa Pham, onmyway133@gmail.com
