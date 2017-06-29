@@ -62,9 +62,5 @@ class DestinationView: NSView {
 
     return true
   }
-
-  func saveDocument(sender: Any) {
-    
-  }
 }
 

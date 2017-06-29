@@ -13,7 +13,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
     saveMenuItem = (NSApplication.shared().delegate as! AppDelegate).saveMenuItem
     saveMenuItem?.target = self
-    saveMenuItem.action = #selector(save)
+    saveMenuItem.action = #selector(handleSaveCommand)
     saveMenuItem.isEnabled = false
   }
 
@@ -49,7 +49,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
     window.setFrame(frame, display: true)
   }
 
-  func save() {
+  func handleSaveCommand() {
     guard let window = view.window else {
       return
     }
@@ -63,7 +63,36 @@ class ViewController: NSViewController, DestinationViewDelegate {
     }
 
     let image = NSImage(cgImage: cgImage, size: window.frame.size)
-    print(image)
+    save(image: image, name: "Hello")
+  }
+
+  func save(image: NSImage, name: String) {
+    guard let tiffData = image.tiffRepresentation,
+      let bitmap = NSBitmapImageRep(data: tiffData),
+      let imageData = bitmap.representation(using: .PNG, properties: [:]) else {
+      return
+    }
+
+    let url = URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
+      .appendingPathComponent("Helo")
+      .appendingPathExtension("png")
+
+    do {
+      try imageData.write(to: url)
+      showNotification(url: url)
+    } catch {
+      print(error)
+    }
+  }
+
+  func showNotification(url: URL) {
+    let notification = NSUserNotification()
+    notification.title = "Hello"
+    notification.informativeText = url.absoluteString
+    notification.hasActionButton = true
+    notification.actionButtonTitle = "Open"
+
+    NSUserNotificationCenter.default.deliver(notification)
   }
 }
 
