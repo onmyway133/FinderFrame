@@ -9,6 +9,11 @@ class Utils {
     return name
   }
 
+  static var outputUrl: URL {
+    return downloadFolderUrl
+      .appendingPathComponent("FinderFrame-\(Utils.appName)-\(Utils.format(date: Date()))")
+  }
+
   static func resize(window: NSWindow, image: NSImage) {
     let minWidth: CGFloat = 300
     let ratio: CGFloat = image.size.height / image.size.width
@@ -24,9 +29,9 @@ class Utils {
     window.setFrame(frame, display: true)
   }
 
-  static func showNotification(url: URL, title: String) {
+  static func showNotification(url: URL) {
     let notification = NSUserNotification()
-    notification.title = title
+    notification.title = Utils.appName
     notification.informativeText = url.absoluteString
     notification.hasActionButton = true
     notification.actionButtonTitle = "Open"
@@ -34,10 +39,28 @@ class Utils {
     NSUserNotificationCenter.default.deliver(notification)
   }
 
-  static func format(date: Date) -> String {
+  static func capture(window: NSWindow) -> NSImage? {
+    guard let cgImage = CGWindowListCreateImage(
+      CGRect.null,
+      CGWindowListOption.optionIncludingWindow,
+      CGWindowID(window.windowNumber),
+      CGWindowImageOption.bestResolution) else {
+        return nil
+    }
+
+
+    return NSImage(cgImage: cgImage, size: window.frame.size)
+  }
+
+  // MARK: - Helper
+  fileprivate static func format(date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "dd.MM.yyyy-HH:mm:ss"
 
     return formatter.string(from: date)
+  }
+
+  fileprivate static var downloadFolderUrl: URL {
+    return URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
   }
 }

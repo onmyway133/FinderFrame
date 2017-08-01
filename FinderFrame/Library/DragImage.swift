@@ -14,33 +14,16 @@ class DragImage: DragItem {
   }
 
   func save(window: NSWindow) {
-    guard let cgImage = CGWindowListCreateImage(
-      CGRect.null,
-      CGWindowListOption.optionIncludingWindow,
-      CGWindowID(window.windowNumber),
-      CGWindowImageOption.bestResolution) else {
-        return
+    guard let image = Utils.capture(window: window),
+      let data = image.toData() else {
+      return
     }
 
-
-    let image = NSImage(cgImage: cgImage, size: window.frame.size)
-    write(image: image)
-  }
-
-  func write(image: NSImage) {
-    guard let tiffData = image.tiffRepresentation,
-      let bitmap = NSBitmapImageRep(data: tiffData),
-      let imageData = bitmap.representation(using: .PNG, properties: [:]) else {
-        return
-    }
-
-    let url = URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
-      .appendingPathComponent("FinderFrame-\(Utils.appName)-\(Utils.format(date: Date()))")
-      .appendingPathExtension("png")
+    let url = Utils.outputUrl.appendingPathExtension("png")
 
     do {
-      try imageData.write(to: url)
-      Utils.showNotification(url: url, title: Utils.appName)
+      try data.write(to: url)
+      Utils.showNotification(url: url)
     } catch {
       print(error)
     }

@@ -16,6 +16,7 @@
 		D2E570B41F30AC0B001FBD7C /* DragImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570B31F30AC0B001FBD7C /* DragImage.swift */; };
 		D2E570B61F30AC11001FBD7C /* DragGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570B51F30AC11001FBD7C /* DragGif.swift */; };
 		D2E570BF1F30BCE6001FBD7C /* Utlils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570BE1F30BCE6001FBD7C /* Utlils.swift */; };
+		D2E570C11F30C270001FBD7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570C01F30C270001FBD7C /* Extensions.swift */; };
 		F4E12342354DB749368C5E95 /* Pods_FinderFrame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE009D4585230D74C6B5AF66 /* Pods_FinderFrame.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		D2E570B31F30AC0B001FBD7C /* DragImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragImage.swift; sourceTree = "<group>"; };
 		D2E570B51F30AC11001FBD7C /* DragGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragGif.swift; sourceTree = "<group>"; };
 		D2E570BE1F30BCE6001FBD7C /* Utlils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utlils.swift; sourceTree = "<group>"; };
+		D2E570C01F30C270001FBD7C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F4F37C5C876FF01898A7F427 /* Pods-FinderFrame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinderFrame.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinderFrame/Pods-FinderFrame.release.xcconfig"; sourceTree = "<group>"; };
 		FE009D4585230D74C6B5AF66 /* Pods_FinderFrame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinderFrame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 				D2E570B31F30AC0B001FBD7C /* DragImage.swift */,
 				D2E570B51F30AC11001FBD7C /* DragGif.swift */,
 				D2E570BE1F30BCE6001FBD7C /* Utlils.swift */,
+				D2E570C01F30C270001FBD7C /* Extensions.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				D2E570B01F30A76D001FBD7C /* DestinationView.swift in Sources */,
 				D2E570B41F30AC0B001FBD7C /* DragImage.swift in Sources */,
 				D2E570B61F30AC11001FBD7C /* DragGif.swift in Sources */,
+				D2E570C11F30C270001FBD7C /* Extensions.swift in Sources */,
 				D2E570AF1F30A76D001FBD7C /* ViewController.swift in Sources */,
 				D2E570B21F30A779001FBD7C /* DragItem.swift in Sources */,
 				D2E570BF1F30BCE6001FBD7C /* Utlils.swift in Sources */,
