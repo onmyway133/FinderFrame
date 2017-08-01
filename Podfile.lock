@@ -1,0 +1,21 @@
+PODS:
+  - GifMagic (0.1.0)
+
+DEPENDENCIES:
+  - GifMagic (from `https://github.com/onmyway133/GifMagic`)
+
+EXTERNAL SOURCES:
+  GifMagic:
+    :git: https://github.com/onmyway133/GifMagic
+
+CHECKOUT OPTIONS:
+  GifMagic:
+    :commit: 41e0d07dc5fb2c335cc5164e7af7f0d468be4668
+    :git: https://github.com/onmyway133/GifMagic
+
+SPEC CHECKSUMS:
+  GifMagic: fcef1d3e0b6273b3480f1fe42c1533b4606f0f78
+
+PODFILE CHECKSUM: 0a43fc589cc78b82125df8aa6fff478d48ff2c4a
+
+COCOAPODS: 1.2.1
