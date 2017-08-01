@@ -1,4 +1,5 @@
 import Cocoa
+import Anchors
 
 protocol DestinationViewDelegate: class {
   func destinationView(_ view: DestinationView, didGetImage image: NSImage, name: String)
@@ -31,7 +32,9 @@ class DestinationView: NSView {
     addSubview(imageView)
     imageView.imageScaling = .scaleProportionallyUpOrDown
     imageView.unregisterDraggedTypes()
-    imageView.pinEdges()
+    activate(
+      imageView.anchor.edges
+    )
 
     // FrameView
     addSubview(frameView)
@@ -42,7 +45,10 @@ class DestinationView: NSView {
     frameView.borderType = .lineBorder
     frameView.borderColor = NSColor.blue.withAlphaComponent(0.3)
     frameView.borderWidth = 4
-    frameView.pinEdges()
+
+    activate(
+      frameView.anchor.edges
+    )
   }
 
   // MARK: - NSDraggingDestination
@@ -82,16 +88,3 @@ class DestinationView: NSView {
     return true
   }
 }
-
-extension NSView {
-  func pinEdges() {
-    let superview = self.superview!
-
-    translatesAutoresizingMaskIntoConstraints = false
-    topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-    leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
-    bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-    rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
-  }
-}
-
