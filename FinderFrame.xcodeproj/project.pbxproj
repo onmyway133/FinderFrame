@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D2873FC11F05032A004F4396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2873FC01F05032A004F4396 /* AppDelegate.swift */; };
-		D2873FC31F05032A004F4396 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2873FC21F05032A004F4396 /* ViewController.swift */; };
 		D2873FC51F05032A004F4396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2873FC41F05032A004F4396 /* Assets.xcassets */; };
 		D2873FC81F05032A004F4396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2873FC61F05032A004F4396 /* Main.storyboard */; };
-		D2873FD01F0503A1004F4396 /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2873FCF1F0503A1004F4396 /* DestinationView.swift */; };
+		D2E570AF1F30A76D001FBD7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570AB1F30A76D001FBD7C /* ViewController.swift */; };
+		D2E570B01F30A76D001FBD7C /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570AE1F30A76D001FBD7C /* DestinationView.swift */; };
+		D2E570B21F30A779001FBD7C /* DragItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570B11F30A779001FBD7C /* DragItem.swift */; };
+		D2E570B41F30AC0B001FBD7C /* DragImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570B31F30AC0B001FBD7C /* DragImage.swift */; };
+		D2E570B61F30AC11001FBD7C /* DragGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E570B51F30AC11001FBD7C /* DragGif.swift */; };
 		F4E12342354DB749368C5E95 /* Pods_FinderFrame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE009D4585230D74C6B5AF66 /* Pods_FinderFrame.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,11 +22,14 @@
 		1C8A474F4B2CFA06D80176D1 /* Pods-FinderFrame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinderFrame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinderFrame/Pods-FinderFrame.debug.xcconfig"; sourceTree = "<group>"; };
 		D2873FBD1F05032A004F4396 /* FinderFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinderFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2873FC01F05032A004F4396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2873FC21F05032A004F4396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D2873FC41F05032A004F4396 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2873FC71F05032A004F4396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2873FC91F05032A004F4396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2873FCF1F0503A1004F4396 /* DestinationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
+		D2E570AB1F30A76D001FBD7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2E570AE1F30A76D001FBD7C /* DestinationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
+		D2E570B11F30A779001FBD7C /* DragItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragItem.swift; sourceTree = "<group>"; };
+		D2E570B31F30AC0B001FBD7C /* DragImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragImage.swift; sourceTree = "<group>"; };
+		D2E570B51F30AC11001FBD7C /* DragGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragGif.swift; sourceTree = "<group>"; };
 		F4F37C5C876FF01898A7F427 /* Pods-FinderFrame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinderFrame.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinderFrame/Pods-FinderFrame.release.xcconfig"; sourceTree = "<group>"; };
 		FE009D4585230D74C6B5AF66 /* Pods_FinderFrame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinderFrame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,14 +75,41 @@
 		D2873FBF1F05032A004F4396 /* FinderFrame */ = {
 			isa = PBXGroup;
 			children = (
+				D2E570AA1F30A76D001FBD7C /* Controller */,
+				D2E570AC1F30A76D001FBD7C /* Library */,
+				D2E570AD1F30A76D001FBD7C /* View */,
 				D2873FC01F05032A004F4396 /* AppDelegate.swift */,
-				D2873FC21F05032A004F4396 /* ViewController.swift */,
 				D2873FC41F05032A004F4396 /* Assets.xcassets */,
 				D2873FC61F05032A004F4396 /* Main.storyboard */,
 				D2873FC91F05032A004F4396 /* Info.plist */,
-				D2873FCF1F0503A1004F4396 /* DestinationView.swift */,
 			);
 			path = FinderFrame;
+			sourceTree = "<group>";
+		};
+		D2E570AA1F30A76D001FBD7C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D2E570AB1F30A76D001FBD7C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D2E570AC1F30A76D001FBD7C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D2E570B11F30A779001FBD7C /* DragItem.swift */,
+				D2E570B31F30AC0B001FBD7C /* DragImage.swift */,
+				D2E570B51F30AC11001FBD7C /* DragGif.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		D2E570AD1F30A76D001FBD7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2E570AE1F30A76D001FBD7C /* DestinationView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F1C7DEAA79D4D573D2167E3B /* Pods */ = {
@@ -211,8 +244,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2873FD01F0503A1004F4396 /* DestinationView.swift in Sources */,
-				D2873FC31F05032A004F4396 /* ViewController.swift in Sources */,
+				D2E570B01F30A76D001FBD7C /* DestinationView.swift in Sources */,
+				D2E570B41F30AC0B001FBD7C /* DragImage.swift in Sources */,
+				D2E570B61F30AC11001FBD7C /* DragGif.swift in Sources */,
+				D2E570AF1F30A76D001FBD7C /* ViewController.swift in Sources */,
+				D2E570B21F30A779001FBD7C /* DragItem.swift in Sources */,
 				D2873FC11F05032A004F4396 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,14 +26,14 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
   // MARK: - DestinationViewDelegate
 
-  func destinationView(_ view: DestinationView, didGetImage image: NSImage, name: String) {
+  func destinationView(_ view: DestinationView, didDrag item: DragItem) {
     guard let window = view.window else {
       return
     }
 
-    fileName = name
+    fileName = item.name
     saveMenuItem.isEnabled = true
-    resize(window: window, image: image)
+    resize(window: window, image: item.image)
   }
 
   func resize(window: NSWindow, image: NSImage) {

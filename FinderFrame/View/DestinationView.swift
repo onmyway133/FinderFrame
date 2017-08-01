@@ -2,7 +2,7 @@ import Cocoa
 import Anchors
 
 protocol DestinationViewDelegate: class {
-  func destinationView(_ view: DestinationView, didGetImage image: NSImage, name: String)
+  func destinationView(_ view: DestinationView, didDrag item: DragItem)
 }
 
 class DestinationView: NSView {
@@ -75,15 +75,16 @@ class DestinationView: NSView {
 
     guard let urls = pasteBoard.readObjects(forClasses: [NSURL.self],
                                             options: options) as? [URL],
-      let url = urls.first,
-      let image = NSImage(contentsOf: url) else {
+      let url = urls.first else {
       return false
     }
 
-    imageView.image = image
-    let name = url.deletingPathExtension().lastPathComponent
-    window?.title = name
-    delegate?.destinationView(self, didGetImage: image, name: name)
+    guard let item: DragItem = DragImage(url: url) ?? DragGif(url: url) else {
+      return false
+    }
+
+    window?.title = item.name
+    delegate?.destinationView(self, didDrag: item)
 
     return true
   }
