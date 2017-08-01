@@ -1,14 +1,6 @@
 import Cocoa
 
 class Utils {
-  static var appName: String {
-    guard let name = Bundle.main.infoDictionary?["CFBundleName"] as? String else {
-      fatalError()
-    }
-
-    return name
-  }
-
   static var outputUrl: URL {
     return downloadFolderUrl
       .appendingPathComponent("FinderFrame-\(Utils.appName)-\(Utils.format(date: Date()))")
@@ -66,5 +58,13 @@ class Utils {
 
   fileprivate static var downloadFolderUrl: URL {
     return URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
+  }
+
+  fileprivate static var appName: String {
+    guard let name = Bundle.main.infoDictionary?["CFBundleName"] as? String else {
+      fatalError()
+    }
+
+    return name
   }
 }
