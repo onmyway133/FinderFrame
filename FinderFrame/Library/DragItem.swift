@@ -5,5 +5,8 @@ protocol DragItem {
   var name: String { get }
 
   /// The first image, used to display in the view
-  var image: NSImage { get }  //
+  var image: NSImage { get }
+
+  // Save
+  func save(window: NSWindow)
 }

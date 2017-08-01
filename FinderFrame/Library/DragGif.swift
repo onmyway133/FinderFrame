@@ -19,4 +19,8 @@ class DragGif: DragItem {
     self.result = result
     self.image = image
   }
+
+  func save(window: NSWindow) {
+    
+  }
 }

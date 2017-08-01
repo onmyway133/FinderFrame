@@ -1,6 +1,14 @@
 import Cocoa
 
 class Utils {
+  static var appName: String {
+    guard let name = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String else {
+      fatalError()
+    }
+
+    return name
+  }
+
   static func resize(window: NSWindow, image: NSImage) {
     let minWidth: CGFloat = 300
     let ratio: CGFloat = image.size.height / image.size.width
