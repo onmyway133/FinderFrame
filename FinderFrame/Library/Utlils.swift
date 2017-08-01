@@ -52,6 +52,10 @@ class Utils {
     return NSImage(cgImage: cgImage, size: window.frame.size)
   }
 
+  static func draw(image: NSImage, onto backgroundImage: NSImage) -> NSImage? {
+    return nil
+  }
+
   // MARK: - Helper
   fileprivate static func format(date: Date) -> String {
     let formatter = DateFormatter()
