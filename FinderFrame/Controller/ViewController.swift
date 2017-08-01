@@ -33,22 +33,7 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
     fileName = item.name
     saveMenuItem.isEnabled = true
-    resize(window: window, image: item.image)
-  }
-
-  func resize(window: NSWindow, image: NSImage) {
-    let minWidth: CGFloat = 300
-    let ratio: CGFloat = image.size.height / image.size.width
-    let finalSize: CGSize
-
-    if image.size.width > minWidth {
-      finalSize = image.size
-    } else {
-      finalSize = CGSize(width: minWidth, height: minWidth * ratio)
-    }
-
-    let frame = NSRect(origin: window.frame.origin, size: finalSize)
-    window.setFrame(frame, display: true)
+    Utils.resize(window: window, image: item.image)
   }
 
   func handleSaveCommand() {
@@ -77,32 +62,15 @@ class ViewController: NSViewController, DestinationViewDelegate {
     }
 
     let url = URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
-      .appendingPathComponent("FinderFrame-\(fileName)-\(formattedDate())")
+      .appendingPathComponent("FinderFrame-\(fileName)-\(Utils.format(date: Date()))")
       .appendingPathExtension("png")
 
     do {
       try imageData.write(to: url)
-      showNotification(url: url)
+      Utils.showNotification(url: url, title: fileName)
     } catch {
       print(error)
     }
-  }
-
-  func showNotification(url: URL) {
-    let notification = NSUserNotification()
-    notification.title = fileName
-    notification.informativeText = url.absoluteString
-    notification.hasActionButton = true
-    notification.actionButtonTitle = "Open"
-
-    NSUserNotificationCenter.default.deliver(notification)
-  }
-
-  func formattedDate() -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yyyy-HH:mm:ss"
-
-    return formatter.string(from: Date())
   }
 }
 

@@ -83,6 +83,7 @@ class DestinationView: NSView {
       return false
     }
 
+    imageView.image = item.image
     window?.title = item.name
     delegate?.destinationView(self, didDrag: item)
 

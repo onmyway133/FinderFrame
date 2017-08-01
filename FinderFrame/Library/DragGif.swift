@@ -3,15 +3,20 @@ import GifMagic
 
 class DragGif: DragItem {
   let name: String
-  let url: URL
+  let image: NSImage
+
   let handler = Handler(encoder: Encoder(), decoder: Decoder())
+  let result: Decoder.Result
 
   init?(url: URL) {
-    guard url.lastPathComponent == "gif" else {
+    guard url.lastPathComponent == "gif",
+      let result = handler.decoder.decode(fileUrl: url),
+      let image = result.images.first else {
       return nil
     }
 
-    self.url = url
     self.name = url.deletingPathExtension().lastPathComponent
+    self.result = result
+    self.image = image
   }
 }
