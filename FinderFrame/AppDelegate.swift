@@ -12,10 +12,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBOutlet weak var saveMenuItem: NSMenuItem!
+  var statusItem: NSStatusItem!
+  let popover = NSPopover()
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
 
     NSUserNotificationCenter.default.delegate = self
+    setupStatusItem()
   }
 }
 
@@ -32,6 +35,22 @@ extension AppDelegate: NSUserNotificationCenterDelegate {
     }
 
     NSWorkspace.shared().activateFileViewerSelecting([url])
+  }
+}
+
+extension AppDelegate {
+  func setupStatusItem() {
+    statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+
+    statusItem.image = NSImage(named: "statusItem")
+    statusItem.button?.target = self
+    statusItem.button?.action = #selector(showPopver)
+
+    popover.contentViewController = ViewController()
+  }
+
+  func showPopver() {
+
   }
 }
 
