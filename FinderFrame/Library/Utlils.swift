@@ -2,7 +2,7 @@ import Cocoa
 
 class Utils {
   static var appName: String {
-    guard let name = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String else {
+    guard let name = Bundle.main.infoDictionary?["CFBundleName"] as? String else {
       fatalError()
     }
 
