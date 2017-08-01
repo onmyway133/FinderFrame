@@ -18,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ aNotification: Notification) {
 
     NSUserNotificationCenter.default.delegate = self
-    setupStatusItem()
   }
 }
 
