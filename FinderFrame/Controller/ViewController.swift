@@ -1,15 +1,17 @@
 import Cocoa
+import Anchors
 
 class ViewController: NSViewController, DestinationViewDelegate {
 
   let destinationView = DestinationView()
+  let loadingIndicator = LoadingIndicator()
   var saveMenuItem: NSMenuItem!
-
   var currentItem: DragItem?
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Destination View
     destinationView.delegate = self
     view.addSubview(destinationView)
 
@@ -17,6 +19,16 @@ class ViewController: NSViewController, DestinationViewDelegate {
     saveMenuItem?.target = self
     saveMenuItem.action = #selector(handleSaveCommand)
     saveMenuItem.isEnabled = false
+
+    // Loading
+    view.addSubview(loadingIndicator)
+    activate(
+      loadingIndicator.anchor.center,
+      loadingIndicator.anchor.size.equal.to(100)
+    )
+
+    // Hide by default
+    loadingIndicator.hide()
   }
 
   override func viewDidLayout() {
@@ -44,7 +56,12 @@ class ViewController: NSViewController, DestinationViewDelegate {
       return
     }
 
-    item.save(window: window)
+    loadingIndicator.show()
+    item.save(window: window, completion: { [weak self] in
+      DispatchQueue.main.async {
+        self?.loadingIndicator.hide()
+      }
+    })
   }
 }
 

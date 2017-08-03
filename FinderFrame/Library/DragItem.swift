@@ -8,5 +8,5 @@ protocol DragItem {
   var image: NSImage { get }
 
   // Save
-  func save(window: NSWindow)
+  func save(window: NSWindow, completion: @escaping () -> Void)
 }

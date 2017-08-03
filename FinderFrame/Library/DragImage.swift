@@ -13,7 +13,11 @@ class DragImage: DragItem {
     self.name = url.deletingPathExtension().lastPathComponent
   }
 
-  func save(window: NSWindow) {
+  func save(window: NSWindow, completion: @escaping () -> Void) {
+    defer {
+      completion()
+    }
+
     guard let image = Utils.capture(window: window),
       let data = image.toData() else {
       return

@@ -19,7 +19,7 @@ class DragGif: DragItem {
     self.image = image
   }
 
-  func save(window: NSWindow) {
+  func save(window: NSWindow, completion: @escaping () -> Void) {
     // Gif does not support transparent shadow
     window.hasShadow = false
     window.contentView?.isHidden = true
@@ -34,14 +34,20 @@ class DragGif: DragItem {
       }
 
       guard let windowImage = Utils.capture(window: window) else {
+        completion()
         return
       }
 
-      self.save(windowImage: windowImage)
+      self.save(windowImage: windowImage, completion: completion)
     }
   }
 
-  func save(windowImage: NSImage) {
+  fileprivate func save(windowImage: NSImage,
+                        completion: @escaping () -> Void) {
+    defer {
+      completion()
+    }
+
     let images = self.result.images.flatMap({ image in
       return Utils.draw(image: image,
                         onto: windowImage)
@@ -55,6 +61,5 @@ class DragGif: DragItem {
     }
 
     Utils.showNotification(url: url)
-
   }
 }
