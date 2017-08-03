@@ -19,8 +19,12 @@ class DragGif: DragItem {
     self.image = image
   }
 
+  func afterDrag(window: NSWindow) {
+    window.hasShadow = false
+  }
+
   func save(window: NSWindow) {
-    guard let windowImage = Utils.capture(window: window, includesShadow: false) else {
+    guard let windowImage = Utils.capture(window: window) else {
       return
     }
 

@@ -14,7 +14,7 @@ class DragImage: DragItem {
   }
 
   func save(window: NSWindow) {
-    guard let image = Utils.capture(window: window, includesShadow: true),
+    guard let image = Utils.capture(window: window),
       let data = image.toData() else {
       return
     }

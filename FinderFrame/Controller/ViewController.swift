@@ -36,6 +36,8 @@ class ViewController: NSViewController, DestinationViewDelegate {
 
     saveMenuItem.isEnabled = true
     Utils.resize(window: window, image: item.image)
+
+    item.afterDrag(window: window)
   }
 
   func handleSaveCommand() {
