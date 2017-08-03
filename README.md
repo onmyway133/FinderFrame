@@ -1,8 +1,13 @@
-# FinderFrame
+# Finder Frame
+
+<div align = "center">
+<img src="Screenshots/Artboard.png" height="400"/>
+</div>
 
 ## Description
 
 - Icon from https://www.emojione.com/
+- Use [GifMagic](https://github.com/onmyway133/GifMagic)
 
 ## How to install
 
