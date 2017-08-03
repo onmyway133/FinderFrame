@@ -8,7 +8,7 @@ class DragGif: DragItem {
   let result: Decoder.Result
 
   init?(url: URL) {
-    guard url.lastPathComponent == "gif",
+    guard url.lastPathComponent.hasSuffix("gif"),
       let result = Decoder().decode(fileUrl: url),
       let image = result.images.first else {
       return nil
