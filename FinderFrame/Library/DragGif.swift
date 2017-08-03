@@ -24,7 +24,7 @@ class DragGif: DragItem {
     window.contentView?.isHidden = true
 
     // Run for next run loop
-    DispatchQueue.global().async {
+    DispatchQueue.main.async {
       guard let windowImage = Utils.capture(window: window) else {
         return
       }
