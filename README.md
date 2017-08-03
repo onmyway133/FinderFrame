@@ -15,9 +15,9 @@
 
 ## How to use
 
-- Drag image into app
+- Drag image/gif into app
 - Press `Cmd+S` to save
-- The saved image is in `Downloads` folder
+- The framed image/gif is in `Downloads` folder
 
 ## Author
 
