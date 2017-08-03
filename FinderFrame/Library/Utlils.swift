@@ -31,12 +31,18 @@ class Utils {
     NSUserNotificationCenter.default.deliver(notification)
   }
 
-  static func capture(window: NSWindow) -> NSImage? {
+  static func capture(window: NSWindow, includesShadow: Bool) -> NSImage? {
+    var imageOptions: CGWindowImageOption = .bestResolution
+
+    if !includesShadow {
+      imageOptions.insert(.shouldBeOpaque)
+    }
+
     guard let cgImage = CGWindowListCreateImage(
       CGRect.null,
       CGWindowListOption.optionIncludingWindow,
       CGWindowID(window.windowNumber),
-      CGWindowImageOption.bestResolution) else {
+      imageOptions) else {
         return nil
     }
 
@@ -51,8 +57,10 @@ class Utils {
 
     canvas.lockFocus()
     NSGraphicsContext.current()?.imageInterpolation = NSImageInterpolation.high
-    image.draw(at: .zero, from: NSRect(x: 0, y: 0, width: 100, height: 100),
-               operation: .sourceOver, fraction: 1.0)
+    image.draw(at: .zero,
+               from: NSRect(origin: .zero, size: backgroundImage.size),
+               operation: .sourceOver,
+               fraction: 1.0)
 
     canvas.unlockFocus()
 
