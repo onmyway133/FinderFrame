@@ -3,7 +3,7 @@ import Cocoa
 class Utils {
   static var outputUrl: URL {
     return downloadFolderUrl
-      .appendingPathComponent("FinderFrame-\(Utils.appName)-\(Utils.format(date: Date()))")
+      .appendingPathComponent("\(Utils.appName)-\(UUID().uuidString)")
   }
 
   static func resize(window: NSWindow, image: NSImage) {
@@ -66,13 +66,6 @@ class Utils {
   }
 
   // MARK: - Helper
-  fileprivate static func format(date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yyyy-HH:mm:ss"
-
-    return formatter.string(from: date)
-  }
-
   fileprivate static var downloadFolderUrl: URL {
     return URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
   }
