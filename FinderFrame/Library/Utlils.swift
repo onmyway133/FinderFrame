@@ -19,10 +19,20 @@ class Utils {
     let maxWidth = screen.frame.size.width * 0.8
 
     let ratio: CGFloat = image.size.height / image.size.width
+
+    // size
     let finalWidth: CGFloat = image.size.width.sanitize(min: minWidth, max: maxWidth)
     let finalSize = CGSize(width: finalWidth,
                            height: finalWidth * ratio + window.titleBarHeight)
-    let frame = NSRect(origin: window.frame.origin, size: finalSize)
+
+    // origin
+    // This is to make top of window stay the same
+    let y: CGFloat = window.frame.origin.y
+      - (finalSize.height - window.frame.size.height)
+
+    // frame
+    let frame = NSRect(origin: CGPoint(x: window.frame.origin.x, y: y),
+                       size: finalSize)
 
     window.setFrame(frame, display: true)
   }
