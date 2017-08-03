@@ -19,24 +19,31 @@ class DragGif: DragItem {
     self.image = image
   }
 
-  func afterDrag(window: NSWindow) {
-    window.hasShadow = false
-  }
-
   func save(window: NSWindow) {
-    guard let windowImage = Utils.capture(window: window) else {
-      return
+    window.hasShadow = false
+    window.contentView?.isHidden = true
+
+    // Run for next run loop
+    DispatchQueue.global().async {
+      guard let windowImage = Utils.capture(window: window) else {
+        return
+      }
+
+      let images = self.result.images.flatMap({ image in
+        return Utils.draw(image: image, onto: windowImage)
+      })
+
+      guard let url = Encoder().encode(images: images,
+                                       frameDuration: self.result.gifInfo.frameDuration) else {
+                                        return
+      }
+      
+      Utils.showNotification(url: url)
+
+      DispatchQueue.main.async {
+        window.hasShadow = true
+        window.contentView?.isHidden = false
+      }
     }
-
-    let images = result.images.flatMap({ image in
-      return Utils.draw(image: image, onto: windowImage)
-    })
-
-    guard let url = Encoder().encode(images: images,
-                                     frameDuration: result.gifInfo.frameDuration) else {
-      return
-    }
-
-    Utils.showNotification(url: url)
   }
 }

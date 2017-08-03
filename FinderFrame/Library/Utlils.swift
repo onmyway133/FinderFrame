@@ -49,6 +49,7 @@ class Utils {
       return nil
     }
 
+    NSGraphicsContext.saveGraphicsState()
     canvas.lockFocus()
     NSGraphicsContext.current()?.imageInterpolation = NSImageInterpolation.high
     image.draw(at: .zero,
@@ -57,6 +58,7 @@ class Utils {
                fraction: 1.0)
 
     canvas.unlockFocus()
+    NSGraphicsContext.restoreGraphicsState()
 
     return canvas
   }
