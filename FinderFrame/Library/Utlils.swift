@@ -1,9 +1,12 @@
 import Cocoa
 
 class Utils {
+  static var outputFileName: String {
+    return "\(Utils.appName)-\(UUID().uuidString)"
+  }
+
   static var outputUrl: URL {
-    return downloadFolderUrl
-      .appendingPathComponent("\(Utils.appName)-\(UUID().uuidString)")
+    return downloadFolderUrl.appendingPathComponent(outputFileName)
   }
 
   static func resize(window: NSWindow, image: NSImage) {

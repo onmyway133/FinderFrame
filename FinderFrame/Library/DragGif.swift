@@ -26,26 +26,33 @@ class DragGif: DragItem {
 
     // Run for next run loop
     DispatchQueue.main.async {
-      guard let windowImage = Utils.capture(window: window) else {
-        return
-      }
-
-      let images = self.result.images.flatMap({ image in
-        return Utils.draw(image: image,
-                          onto: windowImage)
-      })
-
-      guard let url = Encoder().encode(images: images,
-                                       frameDuration: self.result.gifInfo.frameDuration) else {
-                                        return
-      }
-      
-      Utils.showNotification(url: url)
+      self.doTheSave(window: window)
 
       DispatchQueue.main.async {
         window.hasShadow = true
         window.contentView?.isHidden = false
       }
     }
+  }
+
+  func doTheSave(window: NSWindow) {
+    guard let windowImage = Utils.capture(window: window) else {
+      return
+    }
+
+    let images = self.result.images.flatMap({ image in
+      return Utils.draw(image: image,
+                        onto: windowImage)
+    })
+
+    guard let url =
+      Encoder().encode(images: images,
+                      frameDuration: self.result.gifInfo.frameDuration,
+                      fileName: Utils.outputFileName) else {
+      return
+    }
+
+    Utils.showNotification(url: url)
+
   }
 }
