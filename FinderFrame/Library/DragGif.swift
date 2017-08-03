@@ -25,21 +25,23 @@ class DragGif: DragItem {
     window.contentView?.isHidden = true
 
     // Run for next run loop
-    DispatchQueue.main.async {
-      self.doTheSave(window: window)
-
-      DispatchQueue.main.async {
-        window.hasShadow = true
-        window.contentView?.isHidden = false
+    DispatchQueue.global().async {
+      defer {
+        DispatchQueue.main.async {
+          window.hasShadow = true
+          window.contentView?.isHidden = false
+        }
       }
+
+      guard let windowImage = Utils.capture(window: window) else {
+        return
+      }
+
+      self.save(windowImage: windowImage)
     }
   }
 
-  func doTheSave(window: NSWindow) {
-    guard let windowImage = Utils.capture(window: window) else {
-      return
-    }
-
+  func save(windowImage: NSImage) {
     let images = self.result.images.flatMap({ image in
       return Utils.draw(image: image,
                         onto: windowImage)
