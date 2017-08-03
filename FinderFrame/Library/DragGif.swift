@@ -10,7 +10,7 @@ class DragGif: DragItem {
   init?(url: URL) {
     guard url.lastPathComponent.hasSuffix("gif"),
       let result = Decoder().decode(fileUrl: url),
-      let image = result.images.first else {
+      let image = NSImage(contentsOf: url) else {
       return nil
     }
 
