@@ -45,7 +45,18 @@ class Utils {
   }
 
   static func draw(image: NSImage, onto backgroundImage: NSImage) -> NSImage? {
-    return nil
+    guard let canvas = backgroundImage.copy() as? NSImage else {
+      return nil
+    }
+
+    canvas.lockFocus()
+    NSGraphicsContext.current()?.imageInterpolation = NSImageInterpolation.high
+    image.draw(at: .zero, from: NSRect(x: 0, y: 0, width: 100, height: 100),
+               operation: .sourceOver, fraction: 1.0)
+
+    canvas.unlockFocus()
+
+    return canvas
   }
 
   // MARK: - Helper
