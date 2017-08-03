@@ -79,7 +79,7 @@ class DestinationView: NSView {
       return false
     }
 
-    guard let item: DragItem = DragImage(url: url) ?? DragGif(url: url) else {
+    guard let item: DragItem = DragGif(url: url) ?? DragImage(url: url) else {
       return false
     }
 
