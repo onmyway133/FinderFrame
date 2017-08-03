@@ -20,6 +20,7 @@ class DragGif: DragItem {
   }
 
   func save(window: NSWindow) {
+    // Gif does not support transparent shadow
     window.hasShadow = false
     window.contentView?.isHidden = true
 
@@ -30,7 +31,8 @@ class DragGif: DragItem {
       }
 
       let images = self.result.images.flatMap({ image in
-        return Utils.draw(image: image, onto: windowImage)
+        return Utils.draw(image: image,
+                          onto: windowImage)
       })
 
       guard let url = Encoder().encode(images: images,

@@ -25,3 +25,9 @@ extension CGFloat {
     return Swift.min(Swift.max(minValue, self), maxValue)
   }
 }
+
+extension NSWindow {
+  var titleBarHeight: CGFloat {
+    return frame.size.height - contentLayoutRect.size.height
+  }
+}

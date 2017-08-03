@@ -17,7 +17,8 @@ class Utils {
 
     let ratio: CGFloat = image.size.height / image.size.width
     let finalWidth: CGFloat = image.size.width.sanitize(min: minWidth, max: maxWidth)
-    let finalSize = CGSize(width: finalWidth, height: finalWidth * ratio)
+    let finalSize = CGSize(width: finalWidth,
+                           height: finalWidth * ratio + window.titleBarHeight)
     let frame = NSRect(origin: window.frame.origin, size: finalSize)
 
     window.setFrame(frame, display: true)
@@ -42,11 +43,11 @@ class Utils {
         return nil
     }
 
-
     return NSImage(cgImage: cgImage, size: window.frame.size)
   }
 
-  static func draw(image: NSImage, onto backgroundImage: NSImage) -> NSImage? {
+  static func draw(image: NSImage,
+                   onto backgroundImage: NSImage) -> NSImage? {
     guard let canvas = backgroundImage.copy() as? NSImage else {
       return nil
     }
@@ -55,7 +56,7 @@ class Utils {
     canvas.lockFocus()
     NSGraphicsContext.current()?.imageInterpolation = NSImageInterpolation.high
     image.draw(at: .zero,
-               from: NSRect(origin: .zero, size: image.size),
+               from: .zero,
                operation: .sourceOver,
                fraction: 1.0)
 
