@@ -19,3 +19,9 @@ extension NSImage {
     return imageData
   }
 }
+
+extension CGFloat {
+  func sanitize(min minValue: CGFloat, max maxValue: CGFloat) -> CGFloat {
+    return Swift.min(Swift.max(minValue, self), maxValue)
+  }
+}

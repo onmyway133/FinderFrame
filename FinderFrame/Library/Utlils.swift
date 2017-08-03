@@ -7,17 +7,19 @@ class Utils {
   }
 
   static func resize(window: NSWindow, image: NSImage) {
-    let minWidth: CGFloat = 300
-    let ratio: CGFloat = image.size.height / image.size.width
-    let finalSize: CGSize
-
-    if image.size.width > minWidth {
-      finalSize = image.size
-    } else {
-      finalSize = CGSize(width: minWidth, height: minWidth * ratio)
+    guard let screen = window.screen else {
+      assertionFailure()
+      return
     }
 
+    let minWidth: CGFloat = 300
+    let maxWidth = screen.frame.size.width * 0.8
+
+    let ratio: CGFloat = image.size.height / image.size.width
+    let finalWidth: CGFloat = image.size.width.sanitize(min: minWidth, max: maxWidth)
+    let finalSize = CGSize(width: finalWidth, height: finalWidth * ratio)
     let frame = NSRect(origin: window.frame.origin, size: finalSize)
+
     window.setFrame(frame, display: true)
   }
 
