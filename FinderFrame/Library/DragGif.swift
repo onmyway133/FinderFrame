@@ -25,12 +25,10 @@ class DragGif: DragItem {
     window.contentView?.isHidden = true
 
     // Run for next run loop
-    DispatchQueue.global().async {
+    DispatchQueue.main.async {
       defer {
-        DispatchQueue.main.async {
-          window.hasShadow = true
-          window.contentView?.isHidden = false
-        }
+        window.hasShadow = true
+        window.contentView?.isHidden = false
       }
 
       guard let windowImage = Utils.capture(window: window) else {
@@ -38,9 +36,13 @@ class DragGif: DragItem {
         return
       }
 
-      self.save(windowImage: windowImage, completion: completion)
+      DispatchQueue.global().async {
+        self.save(windowImage: windowImage, completion: completion)
+      }
     }
   }
+
+  // MARK: - Helper
 
   fileprivate func save(windowImage: NSImage,
                         completion: @escaping () -> Void) {
