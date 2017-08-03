@@ -15,7 +15,7 @@ class Utils {
       return
     }
 
-    let minWidth: CGFloat = 300
+    let minWidth: CGFloat = 120
     let maxWidth = screen.frame.size.width * 0.8
 
     let ratio: CGFloat = image.size.height / image.size.width

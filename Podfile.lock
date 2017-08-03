@@ -17,7 +17,7 @@ CHECKOUT OPTIONS:
     :commit: 726044d8640defb55cd375b11c763a9451ba3d9f
     :git: https://github.com/onmyway133/Anchors
   GifMagic:
-    :commit: 5956e3ade0efaa847b78b779b2c4ab6e48a3a24b
+    :commit: 2d582429ad44d06f59b7b01f4ecf0f88dcc81300
     :git: https://github.com/onmyway133/GifMagic
 
 SPEC CHECKSUMS:
