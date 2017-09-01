@@ -23,6 +23,8 @@ class DragImage: DragItem {
       return
     }
 
+    Utils.copyToPasteboard(image: image)
+
     let url = Utils.outputUrl.appendingPathExtension("png")
 
     do {

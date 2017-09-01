@@ -79,6 +79,12 @@ class Utils {
     return canvas
   }
 
+  static func copyToPasteboard(image: NSImage) {
+    let pasteboard = NSPasteboard.general()
+    pasteboard.clearContents()
+    pasteboard.writeObjects([image])
+  }
+
   // MARK: - Helper
   fileprivate static var downloadFolderUrl: URL {
     return URL(fileURLWithPath: NSHomeDirectory().appending("/Downloads"))
