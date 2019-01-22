@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		1C8A474F4B2CFA06D80176D1 /* Pods-FinderFrame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinderFrame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinderFrame/Pods-FinderFrame.debug.xcconfig"; sourceTree = "<group>"; };
+		D23CE47321F7C8A800F9397B /* FinderFrame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinderFrame.entitlements; sourceTree = "<group>"; };
 		D25B8CA51F334C9D00718899 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		D2873FBD1F05032A004F4396 /* FinderFrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinderFrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2873FC01F05032A004F4396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		D2873FBF1F05032A004F4396 /* FinderFrame */ = {
 			isa = PBXGroup;
 			children = (
+				D23CE47321F7C8A800F9397B /* FinderFrame.entitlements */,
 				D2E570AA1F30A76D001FBD7C /* Controller */,
 				D2E570AC1F30A76D001FBD7C /* Library */,
 				D2E570AD1F30A76D001FBD7C /* View */,
@@ -166,6 +168,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = T78DK947F2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -386,6 +393,7 @@
 			baseConfigurationReference = 1C8A474F4B2CFA06D80176D1 /* Pods-FinderFrame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FinderFrame/FinderFrame.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -404,6 +412,7 @@
 			baseConfigurationReference = F4F37C5C876FF01898A7F427 /* Pods-FinderFrame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FinderFrame/FinderFrame.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
