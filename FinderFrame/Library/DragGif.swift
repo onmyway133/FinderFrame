@@ -5,17 +5,17 @@ class DragGif: DragItem {
   let name: String
   let image: NSImage
 
-  let result: Decoder.Result
+  let gifInfo: GifInfo
 
   init?(url: URL) {
     guard url.lastPathComponent.hasSuffix("gif"),
-      let result = Decoder().decode(fileUrl: url),
+      let result = GifMagic.Decoder().decode(gifUrl: url),
       let image = NSImage(contentsOf: url) else {
       return nil
     }
 
     self.name = url.deletingPathExtension().lastPathComponent
-    self.result = result
+    self.gifInfo = result
     self.image = image
   }
 
@@ -50,14 +50,14 @@ class DragGif: DragItem {
       completion()
     }
 
-    let images = self.result.images.flatMap({ image in
+    let images = self.gifInfo.images.flatMap({ image in
       return Utils.draw(image: image,
                         onto: windowImage)
     })
 
     guard let url =
       Encoder().encode(images: images,
-                      frameDuration: self.result.gifInfo.frameDuration,
+                      frameDuration: self.gifInfo.frameDuration,
                       fileName: Utils.outputFileName) else {
       return
     }
