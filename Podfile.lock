@@ -1,5 +1,5 @@
 PODS:
-  - Anchors (1.2.0)
+  - Anchors (2.4.0)
   - GifMagic (0.1.0)
 
 DEPENDENCIES:
@@ -14,16 +14,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Anchors:
-    :commit: 726044d8640defb55cd375b11c763a9451ba3d9f
+    :commit: d82de93e38ddb6656f846245100f3eafadf7f5ea
     :git: https://github.com/onmyway133/Anchors
   GifMagic:
-    :commit: 2d582429ad44d06f59b7b01f4ecf0f88dcc81300
+    :commit: ae3db72cd6721e214ae9af869f124592efe5b928
     :git: https://github.com/onmyway133/GifMagic
 
 SPEC CHECKSUMS:
-  Anchors: c853b894099f52ff17ab1ed5eadde8cd6e72ae05
+  Anchors: 75614cac462e063b395386e31eb593a856d831a8
   GifMagic: fcef1d3e0b6273b3480f1fe42c1533b4606f0f78
 
 PODFILE CHECKSUM: c6ba8e3157720d991054f7992aa59de0369eda93
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.6.0.beta.2
