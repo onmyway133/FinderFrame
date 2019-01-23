@@ -1,5 +1,7 @@
 # Finder Frame
 
+❤️ Support my work https://gumroad.com/l/prnm ❤️
+
 <div align = "center">
 <img src="Screenshots/Artboard.png" height="400"/>
 </div>
